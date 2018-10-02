@@ -1,0 +1,30 @@
+<div class="container-overall">
+	<div class="container-selector">
+		<div class="menu-button" id="dropdown-type">
+			<span>Select type</span>
+			<div  id="dropdown-type-content">
+				<div class="dropdown-button" id="button-topics" (click)="clickType('topics')">Topics</div>
+				<div class="dropdown-button" id="button-posts" (click)="clickType('posts')"> Posts</div>
+			</div>
+		</div>
+		<div class ="menu-button" id="dropdown-posts" *ngIf="dataLoaded">
+			<span>Add {{ selectedType }}</span>
+			<div id="dropdown-posts-content">
+				<div class="post-boxes"  *ngFor="let item of contentObject" [id]="contentObject.indexOf(item)+1" (click)="pushInfo(contentObject.indexOf(item))">
+					{{ item.id }}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-info" *ngIf="infoArray">
+		<div class="info-box" *ngFor="let item of infoArray">
+			<h1 *ngIf="item.name"> Topic </h1>
+			<h1 *ngIf="item.content"> Post </h1>
+			<span> {{ item.name }} </span>
+			<span> {{ item.content }} </span>
+			<p> {{ item.date }} </p>
+			<p> {{ item.id }} </p>
+		</div>
+	</div>
+</div>
+
