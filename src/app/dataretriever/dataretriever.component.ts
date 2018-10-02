@@ -11,7 +11,7 @@ import { Post, Topic } from './apiformats'
 
 export class DataretrieverComponent implements OnInit {
 	selectedType: String = null;
-	contentObject: [];
+	contentObject: any = [];
 	pushInfo: Function;
 	infoArray: any = [];
   clickType: Function;
