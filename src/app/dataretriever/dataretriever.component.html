@@ -17,14 +17,37 @@
 		</div>
 	</div>
 	<div class="container-info" *ngIf="infoArray">
-		<div class="info-box" *ngFor="let item of infoArray">
-			<h1 *ngIf="item.name"> Topic </h1>
-			<h1 *ngIf="item.content"> Post </h1>
-			<span> {{ item.name }} </span>
-			<span> {{ item.content }} </span>
-			<p> {{ item.date }} </p>
-			<p> {{ item.id }} </p>
+		<div class="info-box" *ngFor="let item of infoArray; index as i ">
+			<div class="box-title">
+				<div *ngIf="item.name"> Topic </div>
+				<div *ngIf="item.content"> Post </div>	
+			</div>
+			<div class="box-content">
+				<div *ngIf="editMode != item.id">
+				{{ item.name }} 
+				{{ item.content }}
+				</div>
+			</div>
+			<div class="box-time-id" id="item.date">
+				 Date: {{ item.date.slice(0,10)}}<br>
+			 	 Time: {{ item.date.slice(11,16)}}<br>
+				 ID: {{ item.id }}
+		    </div>
+			<div class="box-buttons">
+				<img src="././assets/delete.svg" (click)="deleteBox(i)">
+				<img src="././assets/edit.svg" (click)="editBox(item.id)">
+			</div>
 		</div>
 	</div>
 </div>
 
+
+<!-- <div *ngIf="editMode == item.id">
+					<div *ngIf="item.name">
+						<input [(ngModel)]="item.name">
+					</div>
+					<div *ngIf="item.content">
+						<textarea [(ngModel)]="item.content"></textarea>
+					</div>
+				</div>
+--->

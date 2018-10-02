@@ -17,6 +17,9 @@ export class DataretrieverComponent implements OnInit {
   clickType: Function;
   switchActiveCSS: Function;
   dataLoaded: boolean;
+  deleteBox: Function;
+  editMode: any;
+  editBox: Function;
 
   constructor(api: ApiSletService) { 
 
@@ -36,6 +39,14 @@ export class DataretrieverComponent implements OnInit {
   	this.pushInfo = ((idClicked) => {
   		this.infoArray.push(this.contentObject[idClicked])	
   	})
+
+    this.deleteBox = function(boxToDelete) {
+      this.infoArray.splice(boxToDelete, 1)
+    }
+
+    this.editBox = function(index) {
+      console.log(index + " called to edit")
+    }
 
     this.switchActiveCSS = function(type) {
       this.selectedType = (type);
@@ -58,6 +69,3 @@ export class DataretrieverComponent implements OnInit {
   }
 
 }
-
-
-//  			document.getElementById("dropdown-posts").style.visibility = "visible";
