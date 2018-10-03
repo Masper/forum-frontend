@@ -20,8 +20,27 @@ export class DataretrieverComponent implements OnInit {
   deleteBox: Function;
   editMode: any;
   editBox: Function;
+  newTopicBoolean: false;
+  newTopic: Function;
+  submitTopic: Function;
+  idCounter: Number = 100;
+  postSubmit: String;
 
   constructor(api: ApiSletService) { 
+
+    this.newTopic = function() {
+      this.newTopicBoolean = true;
+    }
+
+    this.submitTopic = function(newtopic) {
+      var postApi = newtopic.value;
+      postApi["time"] = new Date().toISOString();
+      postApi["id"] = this.idCounter;
+      this.idCounter = (this.idCounter+1)
+      var postJSON = JSON.stringify(postApi);
+      api.submitTopic(postJSON).subscribe(response => { this.postSubmit = response })
+      console.log (this.postSubmit)
+    }
 
 
   	this.clickType = function(type) {

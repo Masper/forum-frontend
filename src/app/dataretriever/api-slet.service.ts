@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post, Topic } from './apiformats';
 import { Observable } from 'rxjs';
 import { TOPICS } from './topics';
@@ -12,6 +12,10 @@ import { TOPICS } from './topics';
 
 export class ApiSletService {
 	private apiURL = 'http://localhost:3000/api/';
+	private httpOptions = {
+ 	 headers: new HttpHeaders(
+ 	 	{'Content-Type': 'application/json'} )
+};
 
   constructor(private http: HttpClient) {}
 
@@ -22,6 +26,12 @@ export class ApiSletService {
 //mockdata = return TOPICS
  getTopics(): Observable<Topic[]> {
     return this.http.get<Topic[]>(this.apiURL + "topics")
+ }
+
+ submitTopic(newTopic: String): Observable<any>{
+ 	let apiUrlSubmit = (this.apiURL+"submittopic");
+	return this.http.post<any>(apiUrlSubmit, newTopic, this.httpOptions)
+ 	;
  }
 
 }

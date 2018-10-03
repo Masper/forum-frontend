@@ -20,6 +20,16 @@
 	font-size: 18px;
 	height: fit-content;
 }
+.new-topic-box{ 	display: grid;
+	grid-template-rows: 10px fit-content 10px 10px;
+	grid-row-gap: 10px;
+	background-color: orange;
+	height: fit-content; 
+}
+
+.new-topic-box * {
+	resize:none
+}
 
 .info-box {
 	display: grid;
@@ -27,6 +37,10 @@
 	grid-row-gap: 10px;
 	background-color: orange;
 	height: fit-content;
+}
+
+.info-box * {
+		background-color: orange;
 }
 
 .info-box:hover {
@@ -69,6 +83,7 @@
 	grid-row: 1;
 	display: grid;
 	grid-template-columns: 150px 150px;
+	grid-template-rows: 100px 1fr;
 	-webkit-user-select: none;  /* Chrome all / Safari all */
   	-moz-user-select: none;     /* Firefox all */
 	-ms-user-select: none;      /* IE 10+ */
@@ -78,9 +93,19 @@
 	font-size: 20px;
 }
 
+#menu-new-topic {
+	grid-row: 2;
+	background-color: darkorange;
+	height: -webkit-fit-content;
+}
+
+#menu-new-topic:hover {
+	background: red;
+}
+
+
 .menu-button {
     background: darkorange;
-    position: relative;
     transition-duration: 0.5s;
     display:  inline-block;
     height: 24px;

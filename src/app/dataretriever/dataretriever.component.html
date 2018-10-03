@@ -15,6 +15,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="menu-button" id="menu-new-topic" (click)="newTopic()">
+			New topic!
+		</div>
 	</div>
 	<div class="container-info" *ngIf="infoArray">
 		<div class="info-box" *ngFor="let item of infoArray; index as i ">
@@ -38,10 +41,23 @@
 				<img src="././assets/edit.svg" (click)="editBox(item.id)">
 			</div>
 		</div>
+		<div class="new-topic-box" *ngIf="newTopicBoolean">
+			<form #newtopic="ngForm" (ngSubmit)="submitTopic(newtopic)">
+				Name topic: 
+				<input name="name" type="text" ngModel #newtopicname="ngModel" required minlength="3">
+				<div *ngIf="newtopicname.touched && newtopicname.errors">Naam is verplicht!</div> 
+				<textarea name="firstpost" rows="10" cols="30" ngModel #newtopicpost="ngModel"required maxlength="200" required minlength="5">
+				</textarea>
+				<button class="form-button" type="submit" *ngIf="newtopicpost.touched && !newtopicname.errors && !newtopicpost.errors">Submit</button>
+		</form>
+
+		
+		</div>
+
 	</div>
 </div>
 
-
+<div>
 <!-- <div *ngIf="editMode == item.id">
 					<div *ngIf="item.name">
 						<input [(ngModel)]="item.name">
